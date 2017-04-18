@@ -21,7 +21,7 @@ working shell
 ## Installing
 
 ```
-curl -sSL https://github.com/greentek-eu/gsw-tool/latest/dist/install | bash -
+curl -sSL https://raw.github.com/greentek-eu/gsw-tool/latest/dist/install | bash -
 ```
 
 ## Usage

@@ -4,7 +4,7 @@
 FUNC=$1
 LOCAL=$HOME/.gsw-tool
 PROFILES=$LOCAL/profiles
-MD5SCRIPT="7ae9164526ec3efa6011a741c54639f3"
+MD5SCRIPT="a6bd0d45ea3af0a8893cc0df881faf17"
 MD5FUNC="6fd7fa76fac8900ac2e49031fa0220b3"
 URL="https://raw.github.com/greentek-eu/gsw-tool/latest/dist"
 
