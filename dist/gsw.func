@@ -1,0 +1,56 @@
+
+#
+# this file should be sourced in shell context
+#
+
+# source installed script path
+if [ -f "$HOME/.gsw-tool/gsw.binpath" ]; then
+  source $HOME/.gsw-tool/gsw.binpath
+fi
+
+# now we have the script path in GSW_TOOL_BIN_PATH
+if [ -z "$GSW_TOOL_BIN_PATH" ]; then
+  # fallback
+  export GSW_TOOL_BIN_PATH=$HOME/.gsw-tool/gsw.sh
+fi
+
+# define the communication function with own name
+if [ -f "$GSW_TOOL_BIN_PATH" ]; then
+  gsw_tool_func() {  
+    # Proxy to the script, which should not be used directly
+    # We also need to separate local declaration since it mangles 
+    # with the exit code
+    local value
+    value=$($GSW_TOOL_BIN_PATH "$@")
+    local code="$?"
+    
+    # We communicate with the script for setting the value
+    # through a special exit code
+    local set_var_code=100 print_out_code=0
+    
+    if [ "$code" == "$set_var_code" ]; then
+      # We set git ssh var to the output value
+      export GIT_SSH_COMMAND="$value"
+    elif [ "$code" == "$print_out_code" ]; then
+      # Something happened but we don't set the var, just proxy outs
+      echo -e "$value"
+    fi
+    # Otherwise there is someting on stderr so no need to do anything
+  }
+fi
+
+# source installed function name
+if [ -f "$HOME/.gsw-tool/gsw.funcname" ]; then
+  source $HOME/.gsw-tool/gsw.funcname
+fi
+
+# now we have the function name in GSW_TOOL_FUNC_NAME
+if [ -z "$GSW_TOOL_FUNC_NAME" ]; then
+  # fallback to gsw
+  export GSW_TOOL_FUNC_NAME=gsw
+fi
+
+# let's create an alias function
+eval "$GSW_TOOL_FUNC_NAME() {
+  gsw_tool_func "\$@"
+}";

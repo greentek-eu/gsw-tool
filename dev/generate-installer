@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ROOT=$(dirname $(dirname $(readlink -e $0)))
+URL=$1
+
+MD5SCRIPT=$(md5sum $ROOT/dist/gsw.sh | cut -d " " -f 1)
+MD5FUNC=$(md5sum $ROOT/dist//gsw.func | cut -d " " -f 1)
+TEMPLATE=$ROOT/dev/install.tpl
+
+cat $TEMPLATE | \
+  sed "s#{{md5script}}#$MD5SCRIPT#g" | \
+  sed "s#{{md5func}}#$MD5FUNC#g" | \
+  sed "s#{{url}}#$URL#g" \
+  > $ROOT/dist/install
+
+chmod +x $ROOT/dist/install
