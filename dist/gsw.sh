@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # defs & env
-VERSION="0.1.0-dev"
+VERSION="0.1.1-dev"
 LOCAL=$HOME/.gsw-tool
 SSH=$HOME/.ssh
 PROFILES=$LOCAL/profiles

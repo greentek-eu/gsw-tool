@@ -4,9 +4,9 @@
 FUNC=$1
 LOCAL=$HOME/.gsw-tool
 PROFILES=$LOCAL/profiles
-MD5SCRIPT="05e0f96e5e12cf5f8fd6e97402321908"
+MD5SCRIPT="7ae9164526ec3efa6011a741c54639f3"
 MD5FUNC="6fd7fa76fac8900ac2e49031fa0220b3"
-URL="https://github.com/greentek-eu/gsw-tool/latest/dist"
+URL="https://raw.github.com/greentek-eu/gsw-tool/latest/dist"
 
 # print usage if requested
 if [ "--help" == "$1" -o "help" == "$1" ]; then
